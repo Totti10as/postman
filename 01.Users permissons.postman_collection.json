@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "03317f08-16b2-46d8-ad32-d1f740d41d7f",
+		"name": "01.Users permissons  ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Verify all users permissons ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "711f1ded-f87b-474f-acbc-0512a792b65c",
+						"exec": [
+							" //1.Get permissions array  2.Get Test Title, store it all to local env to be used as dynamic parametrs \r",
+							"var insurerOP_perm_arr = pm.iterationData.get(\"insurerPerm\");\r",
+							"var testTitle = pm.iterationData.get(\"testTitle\");\r",
+							"\r",
+							"\r",
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							" function jwt_decode(a) {\r",
+							"    var parts = a.split('.'); // header, payload, signature\r",
+							"    return JSON.parse(atob(parts[1]));\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Verify Permissons of Role: \" + testTitle,  function () {\r",
+							"    //Get the token\r",
+							"    var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"    //call your function to decode Authorization header\r",
+							"    let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"    //convert a list of string to array and store it local env\r",
+							"    var stringToConvert = decodedData.AUTHORITIES;\r",
+							"    var convertedArray = stringToConvert.split(','); \r",
+							"    convertedArray.sort();        //   console.log('Array from Server', convertedArray.sort()); \r",
+							"    insurerOP_perm_arr.sort();   //   console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"    console.log('Server Array -> Role -> ' + testTitle +': ' + convertedArray.sort());   \r",
+							"    console.log('Baseline Array -> Role -> ' + testTitle +': ' + insurerOP_perm_arr.sort());\r",
+							"\r",
+							"    //validate permissons according to baseline using pm expect\r",
+							"    pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"emailAddress\": \"{{emailAddress}}\",\n     \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}.bambidynamic.com/aaa/login",
+					"host": [
+						"{{url}}",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ece99f1a-7e98-4dcc-94fa-12c746e1fe8a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8e5ade9f-a544-434e-997d-5c09253ec1fc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "409ea721-514d-44d7-8cd1-2e418608beef",
+			"key": "emailAddress",
+			"value": "test.admin@fnx.co.il",
+			"type": "string"
+		},
+		{
+			"id": "d3111107-c1b0-42b5-820b-377fad00941c",
+			"key": "password",
+			"value": "Rome123",
+			"type": "string"
+		},
+		{
+			"id": "666414cd-a507-49df-88d5-da59e20e5107",
+			"key": "\"testTitle\"",
+			"value": "testTitle",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

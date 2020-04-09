@@ -1,0 +1,117 @@
+[
+  {
+    "emailAddress": "test.admin@fnx.co.il",
+    "password": "Rome123",
+	"testTitle": "User Admin",
+    "insurerPerm": [
+      "CreateUser",
+      "EditUserProfile",
+      "ListUsers",
+      "UsersActivation",
+      "ViewUserProfile"
+    ]
+  },
+  {
+    "emailAddress": "test.InsurerCCviewer@fnx.co.il",
+    "password": "Rome123",
+	"testTitle": "InsurerCCviewer",
+    "insurerPerm": [
+      "ListCPolicies",
+      "ViewCPolicyProfile",
+      "ListDrivers",
+      "ViewDriverProfile",
+      "ListDrives",
+      "ViewDrivesProfile",
+      "ListCars",
+      "ViewCarProfile",
+      "ListTerminateCPolicyProfile",
+      "ViewTerminateCPolicyProfile"
+    ]
+  },
+  {
+    "emailAddress": "test.insurersales@fnx.co.il",
+    "password": "Rome123",
+	"testTitle": "InsurerSales",
+    "insurerPerm": [
+      "ListCars",
+      "ViewDriverProfile",
+      "ListDrivers",
+      "ListDrives",
+      "ListCPolicies",
+      "ViewDrivesProfile",
+      "CreateCar",
+      "ViewCPendingPolicyProfile",
+      "CreateDriver",
+      "ViewCPolicyProfile",
+      "CreateCPendingPolicy",
+      "CreateCPolicy",
+      "ListCPendingPolicies",
+      "EditCPendingPolicyProfile",
+      "ViewCarProfile",
+      "ListTerminateCPolicyProfile",
+      "ViewTerminateCPolicyProfile"
+    ]
+  },
+  {
+    "emailAddress": "test.insurerop@fnx.co.il",
+    "password": "Rome123",
+	"testTitle": "InsurerOp",
+    "insurerPerm": [
+      "ViewCPolicyProfile",
+      "ListDrives",
+      "ListDrivers",
+      "ViewTerminateCPolicyProfile",
+      "ViewCarProfile",
+      "CreateDriver",
+      "ListCars",
+      "EditDriverProfile",
+      "ListCPolicies",
+      "ListTerminateCPolicyProfile",
+      "ViewDriverProfile",
+      "EditCPolicyProfile",
+      "ViewDrivesProfile"
+    ]
+  },
+  {
+    "emailAddress": "test.insurerdocaudit@fnx.co.il",
+    "password": "Rome123",
+	"testTitle": "InsurerDocAudit",
+    "insurerPerm": [
+      "ListDrivers",
+      "ListCPolicies",
+      "ViewCPolicyProfile",
+      "ListDrives",
+      "EditDriverProfile",
+      "ListTerminateCPolicyProfile",
+      "ListCars",
+      "ViewCarProfile",
+      "ViewTerminateCPolicyProfile",
+      "CreateDriver",
+      "ViewDrivesProfile",
+      "EditCPolicyProfile",
+      "ViewDriverProfile"
+    ]
+  },
+  {
+    "emailAddress": "test.insureropsupervisor@fnx.co.il",
+    "password": "Rome123",
+	"testTitle": "InsurerOpSupervisor",
+    "insurerPerm": [
+      "ViewDriverProfile",
+      "ListCars",
+      "ListDrives",
+      "RefundDrives",
+      "ListTerminateCPolicyProfile",
+      "ListDrivers",
+      "ViewTerminateCPolicyProfile",
+      "ViewCPolicyProfile",
+      "ViewCarProfile",
+      "ListCPolicies",
+      "CreateDriver",
+      "EditCPolicyProfile",
+      "EditDriverProfile",
+      "ViewDrivesProfile",
+      "TerminateCPolicyProfile"
+    ]
+  }
+]
