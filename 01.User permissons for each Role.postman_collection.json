@@ -1,0 +1,727 @@
+{
+	"info": {
+		"_postman_id": "f2c6a7a7-92cd-4ad4-8e65-2a656e48b50c",
+		"name": "01.User permissons for each Role",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Verify Permissons of User Admin Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "711f1ded-f87b-474f-acbc-0512a792b65c",
+						"exec": [
+							"var insurerOP_perm_arr = [\"CreateUser\", \"EditUserProfile\", \"ListUsers\", \"UsersActivation\", \"ViewUserProfile\"];\r",
+							"\r",
+							"\r",
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							" function jwt_decode(a) {\r",
+							"    var parts = a.split('.'); // header, payload, signature\r",
+							"    return JSON.parse(atob(parts[1]));\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Verify Permissons of User Admin Role\", function () {\r",
+							"    //Get the token\r",
+							"    var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"    //call your function to decode Authorization header\r",
+							"    let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"    //convert a list of string to array and store it local env\r",
+							"    var stringToConvert = decodedData.AUTHORITIES;\r",
+							"    var convertedArray = stringToConvert.split(','); \r",
+							"    convertedArray.sort();        //   console.log('Array from Server', convertedArray.sort()); \r",
+							"    insurerOP_perm_arr.sort();   //   console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"      \r",
+							"\r",
+							"    //validate permissons according to baseline using pm expect\r",
+							"    pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//---------------------------------------------------------------------//\r",
+							"\r",
+							"    // console.log(JSON.stringify(convertedArray.sort())) === (JSON.stringify(insurerOP_perm_arr.sort()));\r",
+							"   \r",
+							"       //print the decodedData to console to see the structure\r",
+							"    //console.log(decodedData);\r",
+							"\r",
+							"     //print the required field and print it to console to see the value\r",
+							"    // console.log(decodedData.AUTHORITIES);\r",
+							"    // console.log(typeof(decodedData.AUTHORITIES));\r",
+							"    // console.log(typeof(insurerOP_perm_arr));\r",
+							"    // console.log(Array.isArray(insurerOP_perm_arr));\r",
+							"    \r",
+							"    \r",
+							"    // let authToken = postman.getResponseHeader(\"Authorization\")\r",
+							"// console.log(\"auth header -> \", authToken)\r",
+							"// postman.setEnvironmentVariable(\"auth\", authToken)\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emailAddress\": \"test.admin@fnx.co.il\",\n    \"password\": \"Rome123\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/aaa/login",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Permissons of InsurerCCviewer Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "711f1ded-f87b-474f-acbc-0512a792b65c",
+						"exec": [
+							"var insurerOP_perm_arr = [\"ListCPolicies\", \"ViewCPolicyProfile\", \"ListDrivers\", \"ViewDriverProfile\", \"ListDrives\", \"ViewDrivesProfile\", \"ListCars\", \"ViewCarProfile\", \"ListTerminateCPolicyProfile\",\r",
+							"\"ViewTerminateCPolicyProfile\"];\r",
+							"\r",
+							"\r",
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							" function jwt_decode(a) {\r",
+							"    var parts = a.split('.'); // header, payload, signature\r",
+							"    return JSON.parse(atob(parts[1]));\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Verify Permissons of InsurerCCviewer Role\", function () {\r",
+							"    //Get the token\r",
+							"    var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"    //call your function to decode Authorization header\r",
+							"    let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"    //convert a list of string to array and store it local env\r",
+							"    var stringToConvert = decodedData.AUTHORITIES;\r",
+							"    var convertedArray = stringToConvert.split(','); \r",
+							"    convertedArray.sort();        \r",
+							"    insurerOP_perm_arr.sort(); \r",
+							" //console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"//console.log('Array from Server', convertedArray.sort()); \r",
+							"\r",
+							"    //validate permissons according to baseline using pm expect\r",
+							"    pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//---------------------------------------------------------------------//\r",
+							"\r",
+							"    // console.log(JSON.stringify(convertedArray.sort())) === (JSON.stringify(insurerOP_perm_arr.sort()));\r",
+							"   \r",
+							"       //print the decodedData to console to see the structure\r",
+							"    //console.log(decodedData);\r",
+							"\r",
+							"     //print the required field and print it to console to see the value\r",
+							"    // console.log(decodedData.AUTHORITIES);\r",
+							"    // console.log(typeof(decodedData.AUTHORITIES));\r",
+							"    // console.log(typeof(insurerOP_perm_arr));\r",
+							"    // console.log(Array.isArray(insurerOP_perm_arr));\r",
+							"    \r",
+							"    \r",
+							"    // let authToken = postman.getResponseHeader(\"Authorization\")\r",
+							"// console.log(\"auth header -> \", authToken)\r",
+							"// postman.setEnvironmentVariable(\"auth\", authToken)\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emailAddress\": \"test.InsurerCCviewer@fnx.co.il\",\n    \"password\": \"Rome123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/aaa/login",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Permissons of InsurerSales Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "711f1ded-f87b-474f-acbc-0512a792b65c",
+						"exec": [
+							"var insurerOP_perm_arr = [\"ListCars\", \"ViewDriverProfile\", \"ListDrivers\", \"ListDrives\", \"ListCPolicies\", \"ViewDrivesProfile\", \"CreateCar\", \"ViewCPendingPolicyProfile\", \"CreateDriver\",\r",
+							"\"ViewCPolicyProfile\", \"CreateCPendingPolicy\", \"CreateCPolicy\", \"ListCPendingPolicies\", \"EditCPendingPolicyProfile\", \"ViewCarProfile\", \"ListTerminateCPolicyProfile\",\"ViewTerminateCPolicyProfile\"];\r",
+							"\r",
+							"\r",
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							" function jwt_decode(a) {\r",
+							"    var parts = a.split('.'); // header, payload, signature\r",
+							"    return JSON.parse(atob(parts[1]));\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Verify Permissons of InsurerSales Role\", function () {\r",
+							"    //Get the token\r",
+							"    var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"    //call your function to decode Authorization header\r",
+							"    let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"    //convert a list of string to array and store it local env\r",
+							"    var stringToConvert = decodedData.AUTHORITIES;\r",
+							"    var convertedArray = stringToConvert.split(','); \r",
+							"    convertedArray.sort();        //   console.log('Array from Server', convertedArray.sort()); \r",
+							"    insurerOP_perm_arr.sort();   //   console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"      \r",
+							"\r",
+							"    //validate permissons according to baseline using pm expect\r",
+							"    pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//---------------------------------------------------------------------//\r",
+							"\r",
+							"    // console.log(JSON.stringify(convertedArray.sort())) === (JSON.stringify(insurerOP_perm_arr.sort()));\r",
+							"   \r",
+							"       //print the decodedData to console to see the structure\r",
+							"    //console.log(decodedData);\r",
+							"\r",
+							"     //print the required field and print it to console to see the value\r",
+							"    // console.log(decodedData.AUTHORITIES);\r",
+							"    // console.log(typeof(decodedData.AUTHORITIES));\r",
+							"    // console.log(typeof(insurerOP_perm_arr));\r",
+							"    // console.log(Array.isArray(insurerOP_perm_arr));\r",
+							"    \r",
+							"    \r",
+							"    // let authToken = postman.getResponseHeader(\"Authorization\")\r",
+							"// console.log(\"auth header -> \", authToken)\r",
+							"// postman.setEnvironmentVariable(\"auth\", authToken)\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emailAddress\": \"test.insurersales@fnx.co.il\",\n    \"password\": \"Rome123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/aaa/login",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Permissons of Insurerop Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "711f1ded-f87b-474f-acbc-0512a792b65c",
+						"exec": [
+							"var insurerOP_perm_arr = [\"ViewCPolicyProfile\", \"ListDrives\", \"ListDrivers\", \"ViewTerminateCPolicyProfile\", \"ViewCarProfile\", \"CreateDriver\", \"ListCars\", \"EditDriverProfile\", \"ListCPolicies\", \"ListTerminateCPolicyProfile\", \"ViewDriverProfile\", \"EditCPolicyProfile\", \"ViewDrivesProfile\"];\r",
+							"\r",
+							"\r",
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							" function jwt_decode(a) {\r",
+							"    var parts = a.split('.'); // header, payload, signature\r",
+							"    return JSON.parse(atob(parts[1]));\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Verify Permissons of Insurerop Role\", function () {\r",
+							"    //Get the token\r",
+							"    var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"    //call your function to decode Authorization header\r",
+							"    let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"    //convert a list of string to array and store it local env\r",
+							"    var stringToConvert = decodedData.AUTHORITIES;\r",
+							"    var convertedArray = stringToConvert.split(','); \r",
+							"    convertedArray.sort();        //   console.log('Array from Server', convertedArray.sort()); \r",
+							"    insurerOP_perm_arr.sort();   //   console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"      \r",
+							"\r",
+							"    //validate permissons according to baseline using pm expect\r",
+							"    pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//---------------------------------------------------------------------//\r",
+							"\r",
+							"    // console.log(JSON.stringify(convertedArray.sort())) === (JSON.stringify(insurerOP_perm_arr.sort()));\r",
+							"   \r",
+							"       //print the decodedData to console to see the structure\r",
+							"    //console.log(decodedData);\r",
+							"\r",
+							"     //print the required field and print it to console to see the value\r",
+							"    // console.log(decodedData.AUTHORITIES);\r",
+							"    // console.log(typeof(decodedData.AUTHORITIES));\r",
+							"    // console.log(typeof(insurerOP_perm_arr));\r",
+							"    // console.log(Array.isArray(insurerOP_perm_arr));\r",
+							"    \r",
+							"    \r",
+							"    // let authToken = postman.getResponseHeader(\"Authorization\")\r",
+							"// console.log(\"auth header -> \", authToken)\r",
+							"// postman.setEnvironmentVariable(\"auth\", authToken)\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emailAddress\": \"test.insurerop@fnx.co.il\",\n    \"password\": \"Rome123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/aaa/login",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Permissons of InsurerDocAudit Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "711f1ded-f87b-474f-acbc-0512a792b65c",
+						"exec": [
+							"var insurerOP_perm_arr = [\"ListDrivers\", \"ListCPolicies\", \"ViewCPolicyProfile\", \"ListDrives\", \"EditDriverProfile\", \"ListTerminateCPolicyProfile\",\"ListCars\", \"ViewCarProfile\", \"ViewTerminateCPolicyProfile\", \"CreateDriver\", \"ViewDrivesProfile\", \"EditCPolicyProfile\", \"ViewDriverProfile\"];\r",
+							"\r",
+							"\r",
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							" function jwt_decode(a) {\r",
+							"    var parts = a.split('.'); // header, payload, signature\r",
+							"    return JSON.parse(atob(parts[1]));\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Verify Permissons of InsurerDocAudit Role\", function () {\r",
+							"    //Get the token\r",
+							"    var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"    //call your function to decode Authorization header\r",
+							"    let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"    //convert a list of string to array and store it local env\r",
+							"    var stringToConvert = decodedData.AUTHORITIES;\r",
+							"    var convertedArray = stringToConvert.split(','); \r",
+							"    convertedArray.sort();        //   console.log('Array from Server', convertedArray.sort()); \r",
+							"    insurerOP_perm_arr.sort();   //   console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"      \r",
+							"\r",
+							"    //validate permissons according to baseline using pm expect\r",
+							"    pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//---------------------------------------------------------------------//\r",
+							"\r",
+							"    // console.log(JSON.stringify(convertedArray.sort())) === (JSON.stringify(insurerOP_perm_arr.sort()));\r",
+							"   \r",
+							"       //print the decodedData to console to see the structure\r",
+							"    //console.log(decodedData);\r",
+							"\r",
+							"     //print the required field and print it to console to see the value\r",
+							"    // console.log(decodedData.AUTHORITIES);\r",
+							"    // console.log(typeof(decodedData.AUTHORITIES));\r",
+							"    // console.log(typeof(insurerOP_perm_arr));\r",
+							"    // console.log(Array.isArray(insurerOP_perm_arr));\r",
+							"    \r",
+							"    \r",
+							"    // let authToken = postman.getResponseHeader(\"Authorization\")\r",
+							"// console.log(\"auth header -> \", authToken)\r",
+							"// postman.setEnvironmentVariable(\"auth\", authToken)\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emailAddress\": \"test.insurerdocaudit@fnx.co.il\",\n    \"password\": \"Rome123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/aaa/login",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Permissons of InsurerOpSupervisor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "711f1ded-f87b-474f-acbc-0512a792b65c",
+						"exec": [
+							"var insurerOP_perm_arr = [\"ViewDriverProfile\", \"ListCars\", \"ListDrives\", \"RefundDrives\", \"ListTerminateCPolicyProfile\", \"ListDrivers\",\r",
+							"\"ViewTerminateCPolicyProfile\",\"ViewCPolicyProfile\",\"ViewCarProfile\",\"ListCPolicies\",\"CreateDriver\", \"EditCPolicyProfile\", \"EditDriverProfile\",\r",
+							"\"ViewDrivesProfile\", \"TerminateCPolicyProfile\"];\r",
+							"\r",
+							"\r",
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							" function jwt_decode(a) {\r",
+							"    var parts = a.split('.'); // header, payload, signature\r",
+							"    return JSON.parse(atob(parts[1]));\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Verify Permissons of InsurerOpSupervisor Role\", function () {\r",
+							"    //Get the token\r",
+							"    var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"    //call your function to decode Authorization header\r",
+							"    let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"    //convert a list of string to array and store it local env\r",
+							"    var stringToConvert = decodedData.AUTHORITIES;\r",
+							"    var convertedArray = stringToConvert.split(','); \r",
+							"    convertedArray.sort();        //   console.log('Array from Server', convertedArray.sort()); \r",
+							"    insurerOP_perm_arr.sort();   //   console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"      \r",
+							"\r",
+							"    //validate permissons according to baseline using pm expect\r",
+							"    pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//---------------------------------------------------------------------//\r",
+							"\r",
+							"    // console.log(JSON.stringify(convertedArray.sort())) === (JSON.stringify(insurerOP_perm_arr.sort()));\r",
+							"   \r",
+							"       //print the decodedData to console to see the structure\r",
+							"    //console.log(decodedData);\r",
+							"\r",
+							"     //print the required field and print it to console to see the value\r",
+							"    // console.log(decodedData.AUTHORITIES);\r",
+							"    // console.log(typeof(decodedData.AUTHORITIES));\r",
+							"    // console.log(typeof(insurerOP_perm_arr));\r",
+							"    // console.log(Array.isArray(insurerOP_perm_arr));\r",
+							"    \r",
+							"    \r",
+							"    // let authToken = postman.getResponseHeader(\"Authorization\")\r",
+							"// console.log(\"auth header -> \", authToken)\r",
+							"// postman.setEnvironmentVariable(\"auth\", authToken)\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emailAddress\": \"test.insureropsupervisor@fnx.co.il\",\n    \"password\": \"Rome123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/aaa/login",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ece99f1a-7e98-4dcc-94fa-12c746e1fe8a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8e5ade9f-a544-434e-997d-5c09253ec1fc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
