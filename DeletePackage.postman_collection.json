@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "e4c7e725-6afe-4598-a43e-47c7a633d601",
+		"name": "DeletePackage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b0b8435-536f-4be1-b2b4-e7e4367d3e98",
+						"exec": [
+							"var headervalue = pm.response.headers.get('Authorization');\r",
+							"pm.environment.set('authToken', headervalue);\r",
+							"\r",
+							"\r",
+							"// var insurerOP_perm_arr = [\"ViewDriverProfile\", \"ListCars\", \"ListDrives\", \"RefundDrives\", \"ListTerminateCPolicyProfile\", \"ListDrivers\",\r",
+							"// \"ViewTerminateCPolicyProfile\",\"ViewCPolicyProfile\",\"ViewCarProfile\",\"ListCPolicies\",\"CreateDriver\", \"EditCPolicyProfile\", \"EditDriverProfile\",\r",
+							"// \"ViewDrivesProfile\", \"TerminateCPolicyProfile\"];\r",
+							"\r",
+							"\r",
+							"\r",
+							"//  function jwt_decode(a) {\r",
+							"//     var parts = a.split('.'); // header, payload, signature\r",
+							"//     return JSON.parse(atob(parts[1]));\r",
+							"// }\r",
+							"\r",
+							"// pm.test(\"Verify Permissons of InsurerOpSupervisor Role\", function () {\r",
+							"//     //Get the token\r",
+							"//     var a=pm.environment.get(\"authToken\");\r",
+							"\r",
+							"//     //call your function to decode Authorization header\r",
+							"//     let decodedData=jwt_decode(a);\r",
+							"\r",
+							"     \r",
+							"//     //convert a list of string to array and store it local env\r",
+							"//     var stringToConvert = decodedData.AUTHORITIES;\r",
+							"//     var convertedArray = stringToConvert.split(','); \r",
+							"//     convertedArray.sort();        //   console.log('Array from Server', convertedArray.sort()); \r",
+							"//     insurerOP_perm_arr.sort();   //   console.log('Baseline', insurerOP_perm_arr.sort());\r",
+							"      \r",
+							"\r",
+							"//     //validate permissons according to baseline using pm expect\r",
+							"//     pm.expect(convertedArray).to.deep.equal(insurerOP_perm_arr);\r",
+							"   \r",
+							"// });\r",
+							"\r",
+							"\r",
+							"\r",
+							"// //---------------------------------------------------------------------//\r",
+							"\r",
+							"//     // console.log(JSON.stringify(convertedArray.sort())) === (JSON.stringify(insurerOP_perm_arr.sort()));\r",
+							"   \r",
+							"//       //print the decodedData to console to see the structure\r",
+							"//     //console.log(decodedData);\r",
+							"\r",
+							"//      //print the required field and print it to console to see the value\r",
+							"//     // console.log(decodedData.AUTHORITIES);\r",
+							"//     // console.log(typeof(decodedData.AUTHORITIES));\r",
+							"//     // console.log(typeof(insurerOP_perm_arr));\r",
+							"//     // console.log(Array.isArray(insurerOP_perm_arr));\r",
+							"    \r",
+							"    \r",
+							"//     // let authToken = postman.getResponseHeader(\"Authorization\")\r",
+							"// // console.log(\"auth header -> \", authToken)\r",
+							"// // postman.setEnvironmentVariable(\"auth\", authToken)\r",
+							" \r",
+							" \r",
+							" \r",
+							" \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"emailAddress\": \"root@bambidynamic.com\",\n     \"password\": \"123Test!@#\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}.bambidynamic.com/aaa/login",
+					"host": [
+						"{{url}}",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"aaa",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user package",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6fc1d9cc-0d58-4f46-a16c-8107f900bf8f",
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    console.log(\"DriverPackage -> ID\", jsonData.driverPackage.id)",
+							"    console.log(\"DriverPackage - > EndAt\", jsonData.driverPackage.endAt)",
+							"   //pm.expect(jsonData.driverPackage.id).to.eql(282);",
+							"   pm.collectionVariables.set('pId', jsonData.driverPackage.id)",
+							"   pm.collectionVariables.set('endAt', jsonData.driverPackage.endAt)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/policy-mgr/search/getDetails/1625?status=ACTIVE",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"policy-mgr",
+						"search",
+						"getDetails",
+						"1625"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "ACTIVE"
+						},
+						{
+							"key": "Content-type",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Terminate package",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4a75fa12-41dc-4153-a1bd-6037d5f26c14",
+						"exec": [
+							"// // = pm.response.headers.get('Authorization');\r",
+							"// var headervalue = pm.environment.get('authToken', headervalue);\r",
+							"   pm.collectionVariables.get('pId')\r",
+							"   pm.collectionVariables.get('endAt')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "61495473-864c-42cb-9431-ac115f2a5832",
+						"exec": [
+							"// pm.collectionVariables.get('pId')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"packageId\": \"{{pId}}\",\n    \"terminationReason\": \"sdfsdfsdfsdf\",\n    \"endDate\": \"{{endAt}}\",\n    \"premiumCASCOtoRefund\": 602,\n    \"premiumMBItoRefund\": 1131\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}.bambidynamic.com/policy-mgr/packages/terminate",
+					"host": [
+						"{{url}}",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"policy-mgr",
+						"packages",
+						"terminate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Prepare to Terminate package",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA4Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BzdXBlcnZpc29yQGZueC5jby5pbCIsImV4cCI6MTU4ODg1NTQ3MSwiQVVUSE9SSVRJRVMiOiJMaXN0Q1BvbGljaWVzLFZpZXdDUG9saWN5UHJvZmlsZSxMaXN0RHJpdmVycyxWaWV3RHJpdmVyUHJvZmlsZSxMaXN0RHJpdmVzLFZpZXdEcml2ZXNQcm9maWxlLExpc3RDYXJzLFZpZXdDYXJQcm9maWxlLENyZWF0ZURyaXZlcixFZGl0RHJpdmVyUHJvZmlsZSxFZGl0Q1BvbGljeVByb2ZpbGUsVGVybWluYXRlQ1BvbGljeVByb2ZpbGUsUmVmdW5kRHJpdmVzLExpc3RUZXJtaW5hdGVDUG9saWN5UHJvZmlsZSxWaWV3VGVybWluYXRlQ1BvbGljeVByb2ZpbGUifQ.aNhjLQIAExhC7K3dISy9QMade_fEmkAka5ADKS7cuLnVeEWl--T-dZTkfRbB4Hr3mnJcq_jrgvFvt3HEJSqokg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzMTA2Iiwic3ViIjoidGVzdC5pbnN1cmVyb3BAZm54LmNvLmlsIiwiZXhwIjoxNTg1OTM2ODM3LCJBVVRIT1JJVElFUyI6Ikxpc3RDUG9saWNpZXMsVmlld0NQb2xpY3lQcm9maWxlLExpc3REcml2ZXJzLFZpZXdEcml2ZXJQcm9maWxlLExpc3REcml2ZXMsVmlld0RyaXZlc1Byb2ZpbGUsTGlzdENhcnMsVmlld0NhclByb2ZpbGUsQ3JlYXRlRHJpdmVyLEVkaXREcml2ZXJQcm9maWxlLEVkaXRDUG9saWN5UHJvZmlsZSxMaXN0VGVybWluYXRlQ1BvbGljeVByb2ZpbGUsVmlld1Rlcm1pbmF0ZUNQb2xpY3lQcm9maWxlIn0.1DLv3vwCJhyO8XUHwxdUKpptMOkQEVymOb8Wmp69c3MTWh5D_wp4fkWDS9GACi5YlzF06a737iF67pBO-IMFwA"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"packageId\": 279\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://qa-azure-api.bambidynamic.com/policy-mgr/packages/terminateRequest",
+					"protocol": "https",
+					"host": [
+						"qa-azure-api",
+						"bambidynamic",
+						"com"
+					],
+					"path": [
+						"policy-mgr",
+						"packages",
+						"terminateRequest"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2ce54309-fbc9-4560-879f-08609ac45342",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "05550cc0-6036-40e4-a732-cd8973de7a18",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "95266830-cd97-46ec-bef5-3dc6b6d7406e",
+			"key": "pId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "18f2703b-0ad6-46c4-bc94-518a4a914118",
+			"key": "endAt",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
