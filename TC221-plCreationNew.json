@@ -1,0 +1,22 @@
+[
+  {
+    "firstName": "סטס",
+    "phoneNumber": "0522463778",
+    "emailAddress": "automationAPI@bambidynamic.com",
+    "plateNum": "8985171",
+    "idNumber": "999155294",
+	"userId": "2536",
+    "gender": 0,
+    "dateOfBirth": "250740000000",
+    "licenseFirstIssuingYear": "2000",
+    "isNewDriver": 0,
+    "numberOfInsuranceYears": 3,
+    "propertyClaims": 0,
+    "bodyInjuresClaims": 0,
+    "licenseSuspensions": 0,
+    "settlement": "גרסה",
+    "street": "מספר",
+    "buildingNumber": "11311"
+
+  }
+]
