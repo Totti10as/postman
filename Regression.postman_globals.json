@@ -1,0 +1,94 @@
+{
+	"id": "f262ebb2-9600-4385-8cd9-a46ed8ca9a90",
+	"values": [
+		{
+			"key": "aaa_token",
+			"value": "",
+			"enabled": false
+		},
+		{
+			"key": "traffilog_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "mobile_user_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "traffilog_user",
+			"value": "michael@bambidynamic.com",
+			"enabled": true
+		},
+		{
+			"key": "traffilog_password",
+			"value": "4cc0f43c-37d2-4b28-ac54-a79ec3e2eaed",
+			"enabled": true
+		},
+		{
+			"key": "otp_secondIdentity",
+			"value": "050799485",
+			"enabled": true
+		},
+		{
+			"key": "otp_phoneNumber",
+			"value": "0509019005",
+			"enabled": true
+		},
+		{
+			"key": "otp_pass",
+			"value": "123456",
+			"enabled": true
+		},
+		{
+			"key": "job_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "job_email",
+			"value": "drivesbilling@bambidynamic.com",
+			"enabled": true
+		},
+		{
+			"key": "job_password",
+			"value": "f0b09045-c8cc-44d3-be51-bd6a35c687f5",
+			"enabled": true
+		},
+		{
+			"key": "leadwize_user",
+			"value": "leadwize@bambidynamic.com",
+			"enabled": true
+		},
+		{
+			"key": "leadwize_pass",
+			"value": "985ce836-4d39-48c1-a173-1456df679705",
+			"enabled": true
+		},
+		{
+			"key": "leadwize_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "bo_user",
+			"value": "root@bambidynamic.com",
+			"enabled": true
+		},
+		{
+			"key": "bo_pass",
+			"value": "123Test!@#",
+			"enabled": true
+		},
+		{
+			"key": "userId",
+			"value": "2536",
+			"enabled": true
+		}
+	],
+	"name": "Regression Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2020-11-02T17:21:32.156Z",
+	"_postman_exported_using": "Postman/7.35.0"
+}
